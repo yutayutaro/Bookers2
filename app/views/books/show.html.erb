@@ -1,0 +1,6 @@
+<div>
+  <p>ユーザーネーム：<%= @book.user_id %></p>
+  <% if @book.user == current_user %>
+    <%= link_to "削除", book_path(@book), method: :delete %>
+  <% end %>
+</div>
