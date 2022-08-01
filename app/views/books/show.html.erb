@@ -1,6 +1,39 @@
-<div>
-  <p>ユーザーネーム：<%= @book.user_id %></p>
-  <% if @book.user == current_user %>
-    <%= link_to "削除", book_path(@book), method: :delete %>
+ <%= flash[:notice] %>
+<div class= "container">
+ <div class= "row">
+  <div class= "col-md-3">
+   <%= render "list" ,book: @booknew,user: @users %>
+   </div>
+   <div class="col-md-8 offset-md-1"> 
+     <h2>Book detail</h2>
+
+  <%= link_to user_path(@users.id) do %>
+  <%= image_tag @users.get_profile_image(100, 100) %>  </br>
   <% end %>
+    <%= link_to user_path(@users.id) do %>
+   <%= @users.name%>
+  <% end %>
+  <table>
+  <thead>
+  
+  <tr>
+   <th>name</th>
+  <th><%= @book.title %></th>
+  </tr>
+    </thead>
+    <tbody>
+  <tr>
+   <th>introduction</th>
+  <th><%= @book.body %></th>
+  </tr>
+  </tbody>
+  </table>
+
+  <% if @book.user == current_user %>
+   <%= link_to "Edit",   edit_book_path(@book), class:'btn btn-sm btn-success' %>
+    <%= link_to "Destroy", book_path(@book), method: :delete,data: {confirm:"本当に削除致しますか？"}, class:'btn btn-sm btn-danger' %>
+   
+    <% end %>
+    </div>
+</div>
 </div>
